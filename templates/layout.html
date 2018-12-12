@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load staticfiles %}
+    {% load humanize %}
+	{% block head %}
+		{% include 'head.html'%}
+    {% endblock %}
+    
+<body>
+<div class="super_container">
+	<!-- Header -->
+    {% include 'header.html'%}
+	{% block slider %}
+		{% include 'slider.html'%}
+    {% endblock %}
+    
+	{% block home %}
+    {% endblock %}
+	<!-- Intro -->
+	<!-- Content Container -->
+	<div class="content_container">
+    {% block content %}
+    {% endblock %}
+	</div>
+	<!-- Footer -->
+    {% include 'footer.html'%}
+</div>
+{% include 'script.html'%}
+</body>
+</html>

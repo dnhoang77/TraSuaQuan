@@ -1,0 +1,111 @@
+﻿{% extends "layout.html" %}
+{% load i18n static %}
+{% load humanize %}
+{% block head %}
+	<head>
+	<title>Category</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Tech Mag template project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'css_js/styles/bootstrap-4.1.2/bootstrap.min.css'%}">
+	<link href="{% static 'css_js/plugins/font-awesome-4.7.0/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css_js/styles/category.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css_js/styles/category_responsive.css'%}">
+	</head>
+{% endblock %}
+{% block slider %}
+{% endblock %}
+{% block home %}
+<!-- Home -->
+	<div class="home">
+		<div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static 'css_js/images/footer.jpg' %}" data-speed="0.8"></div>
+		<div class="home_content_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="home_content">
+							<div class="home_title">Trà sữa quán</div>
+							<div class="breadcrumbs">
+								<ul class="d-flex flex-row align-items-start justify-content-start">
+									<li><a href="index.html" style="color:#ffffff">sản phẩm</a></li>
+									<li>{{sanpham.ten_san_pham}}</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block content %}
+  <div class="featured_title">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="section_title_container d-flex flex-row align-items-start justify-content-start">
+							<div>
+								<div class="section_title">Trà sữa &nbsp;&nbsp;</div>
+								<div class="section_subtitle">ĐT: 0919 359 360</div>
+							</div>
+							<div class="section_bar"></div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="featured_posts">
+
+							<!-- Post -->
+							<div class="featured_post post_h_large">
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="featured_post_image"><img src="/media/{{sanpham.hinh_san_pham}}" alt=""></div>
+									</div>
+									<div class="col-lg-6">
+										<div class="post_content">
+											
+											<div class="post_title"><a href="single.html">{{sanpham.ten_san_pham}}</a></div>
+											<div class="post_text">
+												<p>{{sanpham.mo_ta_tom_tat}}</p>
+											</div>
+											<div class="post_text">
+												<form action="{% url "cart:cart_add" sanpham.ma_san_pham %}" method="post">
+													{% csrf_token %}
+													{% if sanpham.size_m > 0 %}
+													<div class="form-inline">
+														<label>
+														<input type="radio" name="Th_don_gia" value="{{sanpham.size_s}}" checked /> &nbsp;Size S {{sanpham.size_s|intcomma}}
+														</label> &nbsp;&nbsp;&nbsp;
+														<label>
+														<input type="radio" name="Th_don_gia" value="{{sanpham.size_m}}"/> &nbsp;Size M {{sanpham.size_m|intcomma}}
+														</label>
+													</div>
+												{% else %}
+													<div class="form-inline">
+														<label>
+														<input type="radio" name="Th_don_gia" value="{{sanpham.size_s}}" checked /> size s {{sanpham.size_s|intcomma}}
+														</label>
+														
+													</div>
+												{% endif %}
+													<div class="post_text form-inline">
+													{{ cart_product_form.quantity}}
+													
+													<input type="submit" value="Thêm vào giỏ hàng" class="btn btn-success" style="margin-left:10px">
+														</div>
+												</form>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				</div>
+	  </div>
+{% endblock %}

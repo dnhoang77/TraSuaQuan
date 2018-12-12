@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% load i18n static %}
+{% load humanize %}
+{% block content %}
+  {% if sanphams_html %}
+  <div class="container">
+    <div class="row">
+      <div class="world" style="margin-top: 0px">
+							<div class="section_title_container d-flex flex-row align-items-start justify-content-start">
+								<div>
+									<div class="section_title">Sản phẩm mới</div>
+									<div class="section_subtitle">Tư vấn: 0919359360</div>
+								</div>
+								<div class="section_bar"></div>
+							</div>
+							<div class="row world_row">
+								<div class="col-lg-12">
+									<div class="row">
+											{{sanphams_html|safe}}
+									</div>
+								</div>
+							</div>
+            </div>
+          </div>
+        </div>
+  {% endif %}
+
+  {% if sanphams.has_other_pages %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12" style="text-align: center">
+            <nav aria-label="...">
+                <ul class="pagination justify-content-center">
+                  {% if sanphams.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ sanphams.previous_page_number }}" tabindex="-1">Previous</a>
+                      </li>
+                  {% else %}
+                  <li class="page-item disabled">
+                      <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                  {% endif %}
+
+                  {% for i in sanphams.paginator.page_range %}
+                    {% if sanphams.number == i %}
+                      <li class="page-item active">
+                          <a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a>
+                        </li>
+                    {% else %}
+                      <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                  {% if sanphams.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ sanphams.next_page_number }}">Next</a>
+                      </li>
+                  {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Next</a>
+                      </li>
+                  {% endif %}
+                </ul>
+              </nav>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  <script>
+    function() {
+    
+    return "sdfsd";
+    
+    }
+  </script>
+{% endblock %}
